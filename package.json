@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "dev": "webpack -d -w"
+    "dev": "webpack -d -w",
+    "seed": "node database/insertSeed.js"
   },
   "repository": {
     "type": "git",
