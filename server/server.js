@@ -12,14 +12,30 @@ server.use(morgan('dev'));
 server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, '../client/dist')));
 
-server.use('/api/games/:id/related', (req, res) => {
-  Game.find({}).limit(10)
-    .then((response) => {
-      res.send(response);
+server.use('/api/games/:id/similar', (req, res) => {
+  Game.find({}).limit(15)
+    .then((games) => {
+      res.send(games);
     })
     .catch((err) => {
       console.error(err);
     });
 });
+
+server.use('/api/games/:id/together', (req, res) => {
+  Game.find({ _id: req.params.id })
+    .then((game) => {
+      Game.find({ system: game[0].system }).limit(3)
+        .then((games) => {
+          res.send(games);
+        })
+        .catch((err) => {
+          res.send('error inside');
+        });
+    })
+    .catch((err) => {
+      res.send('error outside');
+    });
+})
 
 module.exports = server;
