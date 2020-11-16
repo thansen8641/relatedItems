@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "dev": "webpack -d inline-source-map -w",
-    "seed": "node database/insertSeed.js"
+    "build": "webpack -d inline-source-map -w",
+    "seed": "node database/insertSeed.js",
+    "dev": "npm run start & npm run build"
   },
   "repository": {
     "type": "git",

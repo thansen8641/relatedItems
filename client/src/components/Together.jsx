@@ -24,14 +24,14 @@ class Together extends React.Component {
             <p style={nameStyle}>{this.props.games[0].item}</p>
             <input type="checkbox" checked="checked"></input>
           </div>
-          <div style={{ display: "inline-block", height: "300px", verticalAlign: "middle" }}>+</div>
+          <div style={{ display: "inline-block", height: "300px", verticalAlign: "middle" }}>&#43;</div>
           <div style={gameStyle}>
             <img src={this.props.games[1].imgUrl} style={{ height: "200px"}} />
             <p style={{ textAlign: "center" }}>{this.props.games[1].price}</p>
             <p style={nameStyle}>{this.props.games[1].item}</p>
             <input type="checkbox" checked="checked"></input>
           </div>
-          <div style={{ display: "inline-block", height: "300px", verticalAlign: "middle" }} >+</div>
+          <div style={{ display: "inline-block", height: "300px", verticalAlign: "middle" }} >&#43;</div>
           <div style={gameStyle}>
             <img src={this.props.games[2].imgUrl} style={{ height: "200px"}} />
             <p style={{ textAlign: "center" }}>{this.props.games[2].price}</p>

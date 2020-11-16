@@ -13,7 +13,7 @@ server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, '../client/dist')));
 
 server.use('/api/games/:id/similar', (req, res) => {
-  Game.find({}).limit(15)
+  Game.find({}).limit(20)
     .then((games) => {
       res.send(games);
     })
