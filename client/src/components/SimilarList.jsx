@@ -6,7 +6,7 @@ class SimilarList extends React.Component {
     super(props);
 
     this.state = {
-      count: 0
+      translate: 0
     }
 
     this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
@@ -15,80 +15,33 @@ class SimilarList extends React.Component {
 
   handleLeftArrowClick(e) {
     this.setState({
-      count: this.state.count - 1
+      translate: this.state.translate - 500
     })
   }
 
   handleRightArrowClick(e) {
     this.setState({
-      count: this.state.count + 1
+      translate: this.state.translate + 500
     })
   }
 
   render() {
-    const first = this.props.games.slice(0, 5);
-    const second = this.props.games.slice(5, 10);
-    const third = this.props.games.slice(10, 15);
-    const fourth = this.props.games.slice(15, 20)
-    if (this.state.count === 0) {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <h2>Similar Games</h2>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1025px", margin: "0px auto"  }}>
-            <div style={{ display: "inline-block", textAlign: "left", width: "1000px" }} >
-              {first.map((game) => (
-                <SimilarListItem game={game} />
-              ))}
-            </div>
-            <button onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button>
+    const transformStr = `translate(-${this.state.translate}%)`;
+
+    return (
+      <div style={{ textAlign: "center", width: "100%" }}>
+        <h2>Similar Games</h2>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", margin: "0px auto"  }}>
+          {this.state.translate !== 0 ? <button onClick={this.handleLeftArrowClick} style={{ display: "inline-block" }}>&#60;</button> : <div></div> }
+          <div style={{ overflow: "hidden", whiteSpace: "nowrap", display: "inline-block", maxHeight: "300px", width: "100%" }} >
+            {this.props.games.map((game) => (
+              <SimilarListItem transformStr={transformStr} game={game} />
+            ))}
           </div>
+            {this.state.translate !== 1500 ? <button onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button> : <div></div> }
         </div>
-      );
-    } else if (this.state.count === 1) {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <h2>Similar Games</h2>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1050px", margin: "0px auto"  }}>
-            <button onClick={this.handleLeftArrowClick} style={{ display: "inline-block" }}>&#60;</button>
-            <div style={{ display: "inline-block", textAlign: "left", width: "1000px" }} >
-              {second.map((game) => (
-                <SimilarListItem game={game} />
-              ))}
-            </div>
-            <button onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button>
-          </div>
-        </div>
-      );
-    } else if (this.state.count === 2) {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <h2>Similar Games</h2>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1050px", margin: "0px auto"  }}>
-            <button onClick={this.handleLeftArrowClick} style={{ display: "inline-block" }}>&#60;</button>
-            <div style={{ display: "inline-block", textAlign: "left", width: "1000px" }} >
-              {third.map((game) => (
-                <SimilarListItem game={game} />
-              ))}
-            </div>
-            <button onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button>
-          </div>
-        </div>
-      );
-    } else if (this.state.count === 3) {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <h2>Similar Games</h2>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1025px", margin: "0px auto"  }}>
-            <button onClick={this.handleLeftArrowClick} style={{ display: "inline-block" }}>&#60;</button>
-            <div style={{ display: "inline-block", textAlign: "left", width: "1000px" }} >
-              {fourth.map((game) => (
-                <SimilarListItem game={game} />
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
