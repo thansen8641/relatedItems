@@ -1,0 +1,14 @@
+@media only screen and (max-width: 670px) {
+  .similar {
+    overflow: auto;
+  }
+  .similarArrow {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 670px) {
+  .similar {
+    overflow: hidden;
+  }
+}
