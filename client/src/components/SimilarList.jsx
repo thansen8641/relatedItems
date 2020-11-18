@@ -28,6 +28,23 @@ class SimilarList extends React.Component {
 
   render() {
     const transformStr = `translate(-${this.state.translate}%)`;
+    let circleOne = 'white';
+    let circleTwo = 'white';
+    let circleThree = 'white';
+    let circleFour = 'white';
+    if (this.state.translate === 0) {
+      circleOne = 'gray';
+      circleTwo = circleThree = circleFour = 'white';
+    } else if (this.state.translate === 500) {
+      circleTwo = 'gray';
+      circleOne = circleThree = circleFour = 'white';
+    } else if (this.state.translate === 1000) {
+      circleThree = 'gray';
+      circleOne = circleTwo = circleFour = 'white';
+    } else {
+      circleFour = 'gray';
+      circleOne = circleTwo = circleThree = 'white';
+    }
 
     return (
       <div style={{ textAlign: "center", width: "100%" }}>
@@ -40,6 +57,12 @@ class SimilarList extends React.Component {
             ))}
           </div>
             {this.state.translate !== 1500 ? <button className="similarArrow" onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button> : <div></div> }
+        </div>
+        <div>
+          <button className="similarButton" onClick={() => { this.setState({ translate: 0 }) }} style={{ backgroundColor: circleOne, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: 500 }) }} style={{ backgroundColor: circleTwo, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: 1000 }) }} style={{ backgroundColor: circleThree, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: 1500 }) }} style={{ backgroundColor: circleFour, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
         </div>
       </div>
     );
