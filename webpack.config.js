@@ -9,8 +9,7 @@ const APP_DIR = path.resolve(__dirname, 'client/src');
 const config = {
   entry: APP_DIR + '/index.jsx',
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(jsx|js)$/,
         include: APP_DIR,
         exclude: /node_modules/,
@@ -25,8 +24,11 @@ const config = {
             ]
           }
         }]
-      }
-    ]
+      },
+      {
+        test: /\.(css)$/,
+        use: ['style-loader', 'css-loader'],
+      }]
   },
   output: {
     path: BUILD_DIR,
