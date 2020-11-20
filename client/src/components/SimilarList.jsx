@@ -17,18 +17,18 @@ class SimilarList extends React.Component {
 
   handleLeftArrowClick() {
     this.setState({
-      translate: this.state.translate - 500
+      translate: this.state.translate + 500
     })
   }
 
   handleRightArrowClick() {
     this.setState({
-      translate: this.state.translate + 500
+      translate: this.state.translate - 500
     })
   }
 
   render() {
-    const transformStr = `translate(-${this.state.translate}%)`;
+    const transformStr = `translate(${this.state.translate}%)`;
     let circleOne = 'white';
     let circleTwo = 'white';
     let circleThree = 'white';
@@ -36,13 +36,13 @@ class SimilarList extends React.Component {
     if (this.state.translate === 0) {
       circleOne = 'gray';
       circleTwo = circleThree = circleFour = 'white';
-    } else if (this.state.translate === 500) {
+    } else if (this.state.translate === -500) {
       circleTwo = 'gray';
       circleOne = circleThree = circleFour = 'white';
-    } else if (this.state.translate === 1000) {
+    } else if (this.state.translate === -1000) {
       circleThree = 'gray';
       circleOne = circleTwo = circleFour = 'white';
-    } else {
+    } else if(this.state.translate === -1500) {
       circleFour = 'gray';
       circleOne = circleTwo = circleThree = 'white';
     }
@@ -57,13 +57,13 @@ class SimilarList extends React.Component {
               <SimilarListItem transformStr={transformStr} game={game} key={game._id} />
             ))}
           </div>
-            {this.state.translate !== 1500 ? <button className="similarArrow" onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button> : <div></div> }
+            {this.state.translate !== -1500 ? <button className="similarArrow" onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button> : <div></div> }
         </div>
         <div>
           <button className="similarButton" onClick={() => { this.setState({ translate: 0 }) }} style={{ backgroundColor: circleOne, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
-          <button className="similarButton" onClick={() => { this.setState({ translate: 500 }) }} style={{ backgroundColor: circleTwo, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
-          <button className="similarButton" onClick={() => { this.setState({ translate: 1000 }) }} style={{ backgroundColor: circleThree, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
-          <button className="similarButton" onClick={() => { this.setState({ translate: 1500 }) }} style={{ backgroundColor: circleFour, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: -500 }) }} style={{ backgroundColor: circleTwo, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: -1000 }) }} style={{ backgroundColor: circleThree, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
+          <button className="similarButton" onClick={() => { this.setState({ translate: -1500 }) }} style={{ backgroundColor: circleFour, height: "15px", width: "15px", borderRadius: "50%", margin: "0 5px" }} ></button>
         </div>
       </div>
     );

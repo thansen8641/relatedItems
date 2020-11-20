@@ -218,9 +218,10 @@
   {
     "item": "The Legend of Zelda: Breath of the Wild - Nintendo Switch",
     "price": 44.99,
-    "imgUrl": "https://target.scene7.com/is/image/Target/GUEST_e97f4ca6-9e20-4e34-ae64-1ac42d0d394c?fmt=webp&wid=1400&qlt=80",
+    "imgUrl": "https://target.scene7.com/is/image/Target/GUEST_e97f4ca6-9e20-4e34-ae64-1ac42d0d394c?wid=250&hei=250&fmt=webp",
     "system": "switch"
   },
+
   {
     "item": "Shovel Knight: Treasure Trove - Nintendo Switch",
     "price": 39.99,

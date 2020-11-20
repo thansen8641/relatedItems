@@ -14,9 +14,15 @@ server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, '../client/dist')));
 
 server.use('/api/games/:id/similar', (req, res) => {
-  Game.find({}).limit(20)
+  Game.find({})
     .then((games) => {
-      res.send(games);
+      let similarGames = [];
+      for (let i = 0; i < 20; i++) {
+        let index = Math.floor(Math.random() * games.length);
+        similarGames.push(games[index]);
+        games.splice(index, 1);
+      }
+      res.send(similarGames);
     })
     .catch((err) => {
       console.error(err);
@@ -26,9 +32,15 @@ server.use('/api/games/:id/similar', (req, res) => {
 server.use('/api/games/:id/together', (req, res) => {
   Game.find({ _id: req.params.id })
     .then((game) => {
-      Game.find({ system: game[0].system }).limit(3)
+      Game.find({ system: game[0].system })
         .then((games) => {
-          res.send(games);
+          let togetherGames = [];
+          for (let i = 0; i < 3; i++) {
+            let index = Math.floor(Math.random() * games.length);
+            togetherGames.push(games[index]);
+            games.splice(index, 1);
+          }
+          res.send(togetherGames);
         })
         .catch((err) => {
           res.send(err);

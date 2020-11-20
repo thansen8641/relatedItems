@@ -1,13 +1,13 @@
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 669px) {
+  .similarItem {
+    transform: translate(0%) !important;
+    width: 165px !important;
+  }
   .similar {
     overflow: auto;
   }
   .similarArrow {
     visibility: hidden;
-  }
-  .similarItem {
-    transform: translate(0%) !important;
-    width: 33% !important;
   }
   .similarButton {
     visibility: hidden;
