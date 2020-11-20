@@ -34,8 +34,14 @@ server.use('/api/games/:id/together', (req, res) => {
     .then((game) => {
       Game.find({ system: game[0].system })
         .then((games) => {
+          let gameIndex = games.findIndex((currGame) => {
+            return currGame._id.toString() === game[0]._id.toString()
+          })
           let togetherGames = [];
-          for (let i = 0; i < 3; i++) {
+          togetherGames.push(game[0])
+          games.splice(gameIndex, 1);
+
+          for (let i = 0; i < 2; i++) {
             let index = Math.floor(Math.random() * games.length);
             togetherGames.push(games[index]);
             games.splice(index, 1);
