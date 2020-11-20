@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import SimilarList from './SimilarList.jsx';
 import Together from './Together.jsx';
 
@@ -58,7 +59,11 @@ class App extends React.Component {
         </div>
       );
     }
-  };
-};
+  }
+}
+
+App.propTypes = {
+  id: PropTypes.number.isRequired
+}
 
 export default App;

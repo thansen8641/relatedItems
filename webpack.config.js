@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+require('webpack');
 const path = require('path');
 
 // Build directory is where the bundle file will be placed
@@ -10,7 +10,7 @@ const config = {
   entry: APP_DIR + '/index.jsx',
   module: {
     rules: [{
-        test: /\.(jsx|js)$/,
+        test: /\.(jsx)$/,
         include: APP_DIR,
         exclude: /node_modules/,
         use: [{

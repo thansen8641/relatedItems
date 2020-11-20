@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Together extends React.Component {
   constructor(props) {
@@ -136,7 +137,11 @@ class Together extends React.Component {
         </div>
       </div>
     );
-  };
-};
+  }
+}
+
+Together.propTypes = {
+  games: PropTypes.array.isRequired
+}
 
 export default Together;
