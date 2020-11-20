@@ -1,4 +1,4 @@
-const db = require('./index');
+require('./index');
 const Game = require('./Game');
 const gameData = require('./seed.json');
 

@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const port = 3003;
 
-const db = require('../database');
+require('../database');
 const Game = require('../database/Game');
 
 const server = express();
@@ -30,12 +31,16 @@ server.use('/api/games/:id/together', (req, res) => {
           res.send(games);
         })
         .catch((err) => {
-          res.send('error inside');
+          res.send(err);
         });
     })
     .catch((err) => {
-      res.send('error outside');
+      res.send(err);
     });
+})
+
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 })
 
 module.exports = server;

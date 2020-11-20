@@ -1,5 +1,6 @@
 import React from 'react';
 import SimilarListItem from './SimilarListItem.jsx';
+import PropTypes from 'prop-types';
 import '../../dist/style.css';
 
 class SimilarList extends React.Component {
@@ -14,13 +15,13 @@ class SimilarList extends React.Component {
     this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
   }
 
-  handleLeftArrowClick(e) {
+  handleLeftArrowClick() {
     this.setState({
       translate: this.state.translate - 500
     })
   }
 
-  handleRightArrowClick(e) {
+  handleRightArrowClick() {
     this.setState({
       translate: this.state.translate + 500
     })
@@ -53,7 +54,7 @@ class SimilarList extends React.Component {
           {this.state.translate !== 0 ? <button className="similarArrow" onClick={this.handleLeftArrowClick} style={{ display: "inline-block" }}>&#60;</button> : <div></div> }
           <div className="similar" style={{ whiteSpace: "nowrap", display: "inline-block", maxHeight: "300px", width: "100%", maxWidth: "1200px" }} >
             {this.props.games.map((game) => (
-              <SimilarListItem transformStr={transformStr} game={game} />
+              <SimilarListItem transformStr={transformStr} game={game} key={game._id} />
             ))}
           </div>
             {this.state.translate !== 1500 ? <button className="similarArrow" onClick={this.handleRightArrowClick} style={{ display: "inline-block" }}>&#62;</button> : <div></div> }
@@ -67,6 +68,10 @@ class SimilarList extends React.Component {
       </div>
     );
   }
+}
+
+SimilarList.propTypes = {
+  games: PropTypes.array.isRequired,
 }
 
 export default SimilarList;

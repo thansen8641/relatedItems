@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../dist/style.css';
 
 const SimilarListItem = ({ game, transformStr }) => (
@@ -8,5 +9,10 @@ const SimilarListItem = ({ game, transformStr }) => (
     <p style={{ margin: "5px auto", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap", width: "80%", padding: "0 10%" }}>{game.item}</p>
   </div>
 );
+
+SimilarListItem.propTypes = {
+  game: PropTypes.object.isRequired,
+  transformStr: PropTypes.string.isRequired
+}
 
 export default SimilarListItem;

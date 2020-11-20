@@ -4,10 +4,10 @@ const mongoUri = 'mongodb://localhost/related';
 
 const db = mongoose.connect(mongoUri)
   .then(() => {
-    console.log('Connected to mongoDB')
+    console.log('Connected to mongoDB');
   })
   .catch((err) => {
-    console.log(err)
-  })
+    console.error(err);
+  });
 
-  module.exports = db;
+module.exports = db;
