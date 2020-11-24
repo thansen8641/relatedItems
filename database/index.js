@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const mongoUri = 'mongodb://localhost/related';
+const mongoUri = 'mongodb://database/related';
 
 const db = mongoose.connect(mongoUri)
   .then(() => {

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-const port = 3003;
+const port = 3004;
 
 require('../database');
 const Game = require('../database/Game');
@@ -12,6 +12,17 @@ const server = express();
 server.use(morgan('dev'));
 server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, '../client/dist')));
+
+server.use('/api/games/one', (req, res) => {
+  Game.find({})
+    .then((games) => {
+      let index = Math.floor(Math.random() * games.length);
+      res.send(games[index]);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 server.use('/api/games/:id/similar', (req, res) => {
   Game.find({})

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  test1:
+    build: ./
+    depends_on:
+    - 'database'
+    ports:
+    - '3004:3004'
+  
+  database:
+    image: mongo:latest

@@ -13,8 +13,20 @@ class App extends React.Component {
       togetherGames: []
     }
 
+    this.getInitalGame = this.getInitalGame.bind(this);
     this.getSimilarGames = this.getSimilarGames.bind(this);
     this.getTogetherGames = this.getTogetherGames.bind(this);
+  }
+
+  getInitalGame() {
+    axios.get('/api/games/one')
+      .then((res) => {
+        this.getSimilarGames(res.data._id);
+        this.getTogetherGames(res.data._id);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   getSimilarGames(id) {
@@ -42,12 +54,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getSimilarGames(this.props.id)
-    this.getTogetherGames(this.props.id)
+    this.getInitalGame();
   }
 
   render() {
-    if (this.state.similarGames.length === 0 || this.state.togetherGames.length === 0) {
+    if (this.state.similarGames.length === 0 || this.state.togetherGames.length !== 3) {
       return (
         <div>Loading...</div>
       );
