@@ -4,14 +4,18 @@ const Game = require('./Game');
 const gameData = require('./seed.json');
 
 const seedData = (data) => {
-  Game.insertMany(data)
-    .then(() => {
-      console.log('Game data seeded!');
-      mongoose.connection.close();
+  Game.deleteMany({})
+    .then((res) => {
+      console.log(`Deleted ${res.n} games!`)
+      Game.insertMany(data)
+        .then(() => {
+          console.log('Game data seeded!');
+          mongoose.connection.close();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     })
-    .catch((err) => {
-      console.error(err);
-    });
 };
 
 seedData(gameData);

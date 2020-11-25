@@ -28,6 +28,12 @@ server.use('/api/games/:id/similar', (req, res) => {
   Game.find({})
     .then((games) => {
       let similarGames = [];
+
+      let gameIndex = games.findIndex((currGame) => {
+        return currGame._id.toString() === req.params.id.toString();
+      })
+      games.splice(gameIndex, 1);
+
       for (let i = 0; i < 20; i++) {
         let index = Math.floor(Math.random() * games.length);
         similarGames.push(games[index]);
@@ -43,30 +49,29 @@ server.use('/api/games/:id/similar', (req, res) => {
 server.use('/api/games/:id/together', (req, res) => {
   Game.find({ _id: req.params.id })
     .then((game) => {
-      Game.find({ system: game[0].system })
-        .then((games) => {
-          let gameIndex = games.findIndex((currGame) => {
-            return currGame._id.toString() === game[0]._id.toString()
-          })
-          let togetherGames = [];
-          togetherGames.push(game[0])
-          games.splice(gameIndex, 1);
+      return Game.find({ system: game[0].system })
+    })
+    .then((games) => {
+      let gameIndex = games.findIndex((currGame) => {
+        return currGame._id.toString() === req.params.id.toString()
+      })
 
-          for (let i = 0; i < 2; i++) {
-            let index = Math.floor(Math.random() * games.length);
-            togetherGames.push(games[index]);
-            games.splice(index, 1);
-          }
-          res.send(togetherGames);
-        })
-        .catch((err) => {
-          res.send(err);
-        });
+      let togetherGames = [];
+      togetherGames.push(games[gameIndex])
+
+      games.splice(gameIndex, 1);
+
+      for (let i = 0; i < 2; i++) {
+        let index = Math.floor(Math.random() * games.length);
+        togetherGames.push(games[index]);
+        games.splice(index, 1);
+      }
+      res.send(togetherGames);
     })
     .catch((err) => {
       res.send(err);
     });
-})
+});
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
