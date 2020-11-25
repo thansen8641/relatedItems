@@ -22,13 +22,13 @@ class Together extends React.Component {
     if (e.target.name === 'zero') {
       if (this.state.gameZeroChecked) {
         this.setState({
-          total: parseInt((this.state.total - this.props.games[0].price).toFixed(2)),
+          total: parseFloat((this.state.total - this.props.games[0].price).toFixed(2)),
           gameZeroChecked: false,
           totalChecked: this.state.totalChecked - 1
         }, this.setPhrase);
       } else {
         this.setState({
-          total: this.state.total + this.props.games[0].price,
+          total: parseFloat((this.state.total + this.props.games[0].price).toFixed(2)),
           gameZeroChecked: true,
           totalChecked: this.state.totalChecked + 1
         }, this.setPhrase);
@@ -36,13 +36,13 @@ class Together extends React.Component {
     } else if (e.target.name === 'one') {
       if (this.state.gameOneChecked) {
         this.setState({
-          total: parseInt((this.state.total - this.props.games[1].price).toFixed(2)),
+          total: parseFloat((this.state.total - this.props.games[1].price).toFixed(2)),
           gameOneChecked: false,
           totalChecked: this.state.totalChecked - 1
         }, this.setPhrase);
       } else {
         this.setState({
-          total: this.state.total + this.props.games[1].price,
+          total: parseFloat((this.state.total + this.props.games[1].price).toFixed(2)),
           gameOneChecked: true,
           totalChecked: this.state.totalChecked + 1
         }, this.setPhrase);
@@ -50,13 +50,13 @@ class Together extends React.Component {
     } else if (e.target.name === 'two') {
       if (this.state.gameTwoChecked) {
         this.setState({
-          total: parseInt((this.state.total - this.props.games[2].price).toFixed(2)),
+          total: parseFloat((this.state.total - this.props.games[2].price).toFixed(2)),
           gameTwoChecked: false,
           totalChecked: this.state.totalChecked - 1
         }, this.setPhrase);
       } else {
         this.setState({
-          total: this.state.total + this.props.games[2].price,
+          total: parseFloat((this.state.total + this.props.games[2].price).toFixed(2)),
           gameTwoChecked: true,
           totalChecked: this.state.totalChecked + 1
         }, this.setPhrase);

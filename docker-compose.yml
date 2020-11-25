@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  test1:
+  relateditemsproxy:
     build: ./
     depends_on:
     - 'database'
